@@ -19,27 +19,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             AmphibiansTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    // Remember a SystemUiController
-                    val systemUiController = rememberSystemUiController()
-                    val useDarkIcons = !isSystemInDarkTheme()
-
-                    DisposableEffect(systemUiController, useDarkIcons) {
-                        // Update all of the system bar colors to be transparent, and use
-                        // dark icons if we're in light theme
-                        systemUiController.setSystemBarsColor(
-                            color = Color.Transparent,
-                            darkIcons = useDarkIcons
-                        )
-
-                        // setStatusBarColor() and setNavigationBarColor() also exist
-
-                        onDispose {}
-                    }
                     AmphibianApp(modifier = Modifier.fillMaxSize())
                 }
             }

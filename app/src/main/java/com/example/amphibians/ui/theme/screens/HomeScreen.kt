@@ -35,11 +35,11 @@ import coil.compose.AsyncImage
 import com.example.amphibians.model.AmphibianModelClass
 
 @Composable
-fun HomeScreen(modifier: Modifier, amphibiansViewModel: AmphibiansViewModel) {
-    when(amphibiansViewModel.uiState){
-        is Amphibians.Success -> AmphibiansScreen(modifier = modifier, list = (amphibiansViewModel.uiState as Amphibians.Success).list)
+fun HomeScreen(modifier: Modifier, retryAction: () -> Unit, uiState: Amphibians) {
+    when(uiState){
+        is Amphibians.Success -> AmphibiansScreen(modifier = modifier, list = (uiState as Amphibians.Success).list)
         Amphibians.Loading -> LoadingScreen(modifier = modifier)
-        Amphibians.Error -> ErrorScreen(modifier = modifier, retryAction = {amphibiansViewModel.getAmphibiansData()} )
+        Amphibians.Error -> ErrorScreen(modifier = modifier, retryAction = retryAction )
     }
 }
 

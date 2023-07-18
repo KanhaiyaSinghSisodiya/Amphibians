@@ -24,8 +24,8 @@ fun AmphibianApp(modifier: Modifier) {
             Text(text = "Amphibians", style = MaterialTheme.typography.headlineMedium)
         }))
     }) {
-        val amphibiansViewModel: AmphibiansViewModel = viewModel()
-        HomeScreen(modifier = modifier.padding(it), amphibiansViewModel = amphibiansViewModel)
-    //    Image(modifier = modifier.padding(it), painter = painterResource(id = R.drawable.baseline_error_24), contentDescription = "Loading Image", contentScale = ContentScale.Crop)
+        val amphibiansViewModel: AmphibiansViewModel =
+            viewModel(factory = AmphibiansViewModel.Factory)
+        HomeScreen(modifier = modifier.padding(it), retryAction = {amphibiansViewModel.getAmphibiansData()}, uiState = amphibiansViewModel.uiState)
     }
 }
